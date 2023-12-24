@@ -1,5 +1,6 @@
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/lists.dart';
+import 'package:emart_app/views/home_screen/components/featured_button.dart';
 import 'package:emart_app/widgets_common/home_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:emart_app/consts/colors.dart';
@@ -67,7 +68,7 @@ class HomeScreen extends StatelessWidget{
                   ),
 
                   //Second Swipers
-                  10.heightBox,
+                  20.heightBox,
                   VxSwiper.builder(
                     aspectRatio: 16 / 9,
                     autoPlay: true,
@@ -82,7 +83,7 @@ class HomeScreen extends StatelessWidget{
                   }),
 
                   //Category Buttons
-                  10.heightBox,
+                  20.heightBox,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: List.generate(3, (index) => homeButtons(
@@ -94,23 +95,91 @@ class HomeScreen extends StatelessWidget{
                   ),
 
                   //featured categories
-                  10.heightBox,
+                  20.heightBox,
                   Align(
                     alignment: Alignment.centerLeft,
                     child: featuredCategories.text.color(darkFontGrey).size(18).fontFamily(semibold).make(),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: featuredCategories.text.color(darkFontGrey).size(18).fontFamily(semibold).make(),
+                  20.heightBox,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child:
+                      Row(
+                        children: List.generate(3, (index) => Column(
+                          children: [
+                            featuredButton(icon: featuredImages1[index], title: featuredTitles1[index]),
+                            10.heightBox,
+                            featuredButton(icon: featuredImages2[index], title: featuredTitles2[index])
+                          ],
+                        )).toList(),
+                      ),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: featuredCategories.text.color(darkFontGrey).size(18).fontFamily(semibold).make(),
+
+                  20.heightBox,
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    width: double.infinity,
+                    decoration: const BoxDecoration(color: redColor),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        featuredProduct.text.white.fontFamily(bold).size(18).make(),
+                        
+                        10.heightBox,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                              children: List.generate(6, 
+                              (index) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Image.asset(imgP1, width: 150, fit: BoxFit.cover,),
+                                  10.heightBox,
+                                  "Laptop 4GB/64GB".text.fontFamily(semibold).color(darkFontGrey).make(),
+                                  10.heightBox,
+                                  "\$600".text.color(redColor).fontFamily(bold).size(16).make()
+                                ],
+                              ).box.white.margin(const EdgeInsets.symmetric(horizontal: 4)).roundedSM.padding(const EdgeInsets.all(8)).make()),
+                              
+                            ))
+                        ],
+                    ),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: featuredCategories.text.color(darkFontGrey).size(18).fontFamily(semibold).make(),
-                  )
+
+                  //Third Swiper
+                  20.heightBox,
+                  VxSwiper.builder(
+                    aspectRatio: 16 / 9,
+                    autoPlay: true,
+                    height: 150,
+                    enlargeCenterPage: true,
+                    itemCount: secondSlidersList.length, 
+                    itemBuilder: (context, index){
+                      return  Image.asset(
+                          secondSlidersList[index],
+                          fit: BoxFit.fitWidth,
+                      ).box.rounded.clip(Clip.antiAlias).margin(EdgeInsets.symmetric(horizontal:8)).make();
+                  }),
+
+                  //All Products Section
+                  20.heightBox,
+                  GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 6,
+                    gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2, mainAxisSpacing: 8, crossAxisSpacing: 8, mainAxisExtent: 300) , 
+                    itemBuilder: (context, index){
+                  return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(imgP5, height: 200, width: 200, fit: BoxFit.cover,),
+                          const Spacer(),
+                          "Laptop 4GB/64GB".text.fontFamily(semibold).color(darkFontGrey).make(),
+                          10.heightBox,
+                          "\$600".text.color(redColor).fontFamily(bold).size(16).make()
+                        ],
+                      ).box.white.margin(const EdgeInsets.symmetric(horizontal: 4)).roundedSM.padding(const EdgeInsets.all(12)).make();
+                    })
                 ],
             )))
           ],)),

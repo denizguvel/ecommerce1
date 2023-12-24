@@ -20,4 +20,17 @@ const alreadyHaveAccount = "Already have an account? ";
 
 const home = "Home", categories = "Categories", cart = "Cart", account = "Account";
 
-const searchanything = "Search anything...", todayDeal = "Today's Deal", flashsale = "Flash Sale", topSellers = "Top Sellers", brand = "Brand", topCategories = "Top Categories", featuredCategories = "Featured Categories";
+const searchanything = "Search anything...", 
+      todayDeal = "Today's Deal", 
+      flashsale = "Flash Sale", 
+      topSellers = "Top Sellers", 
+      brand = "Brand", 
+      topCategories = "Top Categories", 
+      womanDress = "Women Dress",
+      girlsWatches = "Girls Watches",
+      mobilePhone = "Mobile Phone",
+      boysGlasses = "Boys Glasses",
+      tShirts = "TShirts",
+      girlsDress = "Girls Dresses",
+      featuredProduct = "Featured Products",
+      featuredCategories = "Featured Categories";
