@@ -5,6 +5,7 @@ Widget ourButton({onPress, color, textColor, title}){
     style: ElevatedButton.styleFrom(
       primary: color,
       padding: const EdgeInsets.all(12),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))
     ),
     onPressed: onPress,
     child: "$title".text.color(textColor).fontFamily(bold).make()
