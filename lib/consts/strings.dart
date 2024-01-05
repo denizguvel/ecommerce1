@@ -17,6 +17,7 @@ const loginWith = "Login with";
 const privacyPolicy = "Privacy Policy";
 const termAndCond = "Terms and Conditions";
 const alreadyHaveAccount = "Already have an account? ";
+const logout = "Log Out";
 
 const home = "Home", categories = "Categories", cart = "Cart", account = "Account";
 
@@ -53,3 +54,8 @@ const video = "Video",
       returnpolicy = "Return Policy",
       supportpolicy = "Support Policy",
       productsyoumaylike = "Products you may also like";
+
+//Profile Strings
+const wishlist = "My Wishlist",
+      orders = "My Orders",
+      message = "Messages";
