@@ -1,6 +1,9 @@
 import 'dart:math';
 
 import 'package:emart_app/consts/consts.dart';
+import 'package:emart_app/controllers/auth_controller.dart';
+import 'package:emart_app/views/home_screen/home.dart';
+import 'package:emart_app/views/home_screen/home_screen.dart';
 import 'package:get/get.dart';
 
 import '../../consts/lists.dart';
@@ -17,8 +20,15 @@ class SignupScreen extends StatefulWidget {
   State<SignupScreen> createState()=> _SignupScreenState();
 }
   class _SignupScreenState extends State<SignupScreen>{
-    
     bool? isCheck = false;
+    var controller = Get.put(AuthController());
+
+  //text controllers
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+  var passwordRetypeController = TextEditingController();
+
 
     @override
     Widget build(BuildContext context) {
@@ -36,10 +46,10 @@ class SignupScreen extends StatefulWidget {
                   15.heightBox,
                   Column(
                     children: [
-                      customTextField(hint: nameHint, title: name),
-                      customTextField(hint: emailHint, title: email),
-                      customTextField(hint: passwordHint, title: password),
-                      customTextField(hint: passwordHint, title: retypePassword),
+                      customTextField(hint: nameHint, title: name, controller: nameController, isPass: false),
+                      customTextField(hint: emailHint, title: email, controller: emailController, isPass: false),
+                      customTextField(hint: passwordHint, title: password, controller: passwordController, isPass: true),
+                      customTextField(hint: passwordHint, title: retypePassword, controller: passwordRetypeController, isPass: true),
                       Align(
                         alignment: Alignment.centerRight,
                         child:TextButton(onPressed: () {}, child: forgetPass.text.make())),
@@ -91,7 +101,22 @@ class SignupScreen extends StatefulWidget {
                         ],
                       ),
                       5.heightBox,
-                      ourButton(color: isCheck == true?  redColor : lightGrey, title: signup, textColor: whiteColor, onPress: (){})
+                      ourButton(color: isCheck == true?  redColor : lightGrey, title: signup, textColor: whiteColor, onPress: () async{
+                        if(isCheck != false){
+                          try {
+                            await controller
+                            .signupMethod(context: context, email: emailController.text, password: passwordController.text).then((value) {
+                              return controller.storeUserData(email: emailController.text, password: passwordController.text, name: nameController.text);  
+                          }).then((value){
+                            VxToast.show(context, msg: loggedin );
+                            Get.offAll(()=>Home());
+                          });
+                          } catch (e) {
+                            auth.signOut();
+                            VxToast.show(context, msg: e.toString());
+                          }
+                        }
+                      })
                       .box
                       .width(context.screenWidth - 50)
                       .make(),
