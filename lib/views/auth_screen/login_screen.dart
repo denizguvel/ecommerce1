@@ -30,7 +30,8 @@ class LoginScreen extends StatelessWidget {
               10.heightBox,
               "Log in to $appname".text.fontFamily(bold).white.size(18).make(),
               15.heightBox,
-              Column(
+              Obx(
+                ()=>Column(
                 children: [
                   customTextField(hint: emailHint, title: email, isPass: false, controller: controller.emailController),
                   customTextField(hint: passwordHint, title: password, isPass: true, controller: controller.passwordController),
@@ -38,16 +39,22 @@ class LoginScreen extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child:TextButton(onPressed: () {}, child: forgetPass.text.make())),
                   5.heightBox,
+                  controller.isloading.value ? const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(redColor),
+                  ):
                   //ourButton().box.width(context.screenWidth - 50).make(),
                   ourButton(
                     color: redColor, 
                     title: login, 
                     textColor: whiteColor, 
                     onPress: () async{
+                      controller.isloading(true);
                       await controller.loginMethod(context: context).then((value){
                         if(value!=null){
                           VxToast.show(context, msg: loggedin);
                           Get.offAll(() => const Home());
+                        }else{
+                          controller.isloading(false);
                         }
                       });
                     //Get.to(() => const Home());
@@ -82,7 +89,7 @@ class LoginScreen extends StatelessWidget {
                   )
                 ],
               ).box.white.rounded.padding(const EdgeInsets.all(16)).width(context.screenWidth - 70).shadowSm.make()
-          ],)
+          ),],)
           )
       ));
   }

@@ -44,7 +44,7 @@ class SignupScreen extends StatefulWidget {
                   10.heightBox,
                   "Join the $appname".text.fontFamily(bold).white.size(18).make(),
                   15.heightBox,
-                  Column(
+                  Obx(()=>Column(
                     children: [
                       customTextField(hint: nameHint, title: name, controller: nameController, isPass: false),
                       customTextField(hint: emailHint, title: email, controller: emailController, isPass: false),
@@ -101,8 +101,11 @@ class SignupScreen extends StatefulWidget {
                         ],
                       ),
                       5.heightBox,
-                      ourButton(color: isCheck == true?  redColor : lightGrey, title: signup, textColor: whiteColor, onPress: () async{
+                     controller.isloading.value ? const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(redColor),
+                  ): ourButton(color: isCheck == true?  redColor : lightGrey, title: signup, textColor: whiteColor, onPress: () async{
                         if(isCheck != false){
+                          controller.isloading(true);
                           try {
                             await controller
                             .signupMethod(context: context, email: emailController.text, password: passwordController.text).then((value) {
@@ -114,6 +117,7 @@ class SignupScreen extends StatefulWidget {
                           } catch (e) {
                             auth.signOut();
                             VxToast.show(context, msg: e.toString());
+                            controller.isloading(false);
                           }
                         }
                       })
@@ -137,7 +141,7 @@ class SignupScreen extends StatefulWidget {
                       }),
                     ],
                   ).box.white.rounded.padding(const EdgeInsets.all(16)).width(context.screenWidth - 70).shadowSm.make()
-              ],)
+              ),],)
             )
             )
         ));
