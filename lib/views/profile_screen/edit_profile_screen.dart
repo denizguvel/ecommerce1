@@ -8,11 +8,14 @@ import 'package:emart_app/widgets_common/our_button.dart';
 import 'package:get/get.dart';
 
 class EditProfileScreen extends StatelessWidget{
-  const EditProfileScreen({Key? key}) : super(key: key);
+  final dynamic data;
+  const EditProfileScreen({Key? key, this.data}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
     var controller = Get.find<ProfileController>();
+    controller.nameController.text = data['name'];
+    controller.passController.text = data['password'];
 
     return bgWidget(
       child: Scaffold(
@@ -32,8 +35,8 @@ class EditProfileScreen extends StatelessWidget{
               }, textColor: whiteColor, title: "Change"),
               const Divider(),
               20.heightBox,
-              customTextField(hint: nameHint, title: name, isPass: false),
-              customTextField(hint: password, title: password, isPass: true),
+              customTextField(controller: controller.nameController ,hint: nameHint, title: name, isPass: false),
+              customTextField(controller: controller.passController ,hint: password, title: password, isPass: true),
               20.heightBox,
               SizedBox(
                 width: context.screenWidth - 60 ,
