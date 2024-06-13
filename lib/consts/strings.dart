@@ -60,4 +60,6 @@ const video = "Video",
 //Profile Strings
 const wishlist = "My Wishlist",
       orders = "My Orders",
-      message = "Messages";
+      message = "Messages",
+      oldpass = "Old password",
+      newpass = "New password";

@@ -44,7 +44,10 @@ class EditProfileScreen extends StatelessWidget{
               const Divider(),
               20.heightBox,
               customTextField(controller: controller.nameController ,hint: nameHint, title: name, isPass: false),
-              customTextField(controller: controller.passController ,hint: password, title: password, isPass: true),
+              10.heightBox,
+              customTextField(controller: controller.oldpassController ,hint: passwordHint, title: oldpass, isPass: true),
+              10.heightBox,
+              customTextField(controller: controller.newpassController ,hint: passwordHint, title: newpass, isPass: true),
               20.heightBox,
               controller.isloading.value ? CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation(redColor),
@@ -57,7 +60,7 @@ class EditProfileScreen extends StatelessWidget{
                   await controller.updateProfile(
                     imgUrl: controller.profileImageLink,
                     name: controller.nameController.text,
-                    password: controller.passController.text);
+                    password: controller.newpassController.text);
                   VxToast.show(context, msg: "Updated");
                 }, textColor: whiteColor, title: "Save"),
               )],
