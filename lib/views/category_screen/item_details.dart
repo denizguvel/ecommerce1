@@ -1,6 +1,7 @@
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/consts/lists.dart';
 import 'package:emart_app/controllers/product_controller.dart';
+import 'package:emart_app/views/chat_screen/chat_screen.dart';
 import 'package:emart_app/widgets_common/bg_widget.dart';
 import 'package:emart_app/widgets_common/our_button.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,14 @@ class ItemDetails extends StatelessWidget{
           title: title!.text.color(darkFontGrey).fontFamily(bold).make(),
           actions: [
             IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.favorite_outline)),
+            IconButton(onPressed: () {
+              if (controller.isFav.value) {
+                controller.removeFromWishlist(data.id);
+                controller.isFav(false);
+              }else {
+                controller.addToWishlist(data.id);
+              }
+            }, icon: const Icon(Icons.favorite_outline)),
           ],
         ),
         body: Column(
@@ -91,7 +99,12 @@ class ItemDetails extends StatelessWidget{
                           const CircleAvatar(
                             backgroundColor: Colors.white,
                             child: Icon(Icons.message_rounded, color: darkFontGrey,),
-                          )
+                          ).onTap(() {
+                            Get.to(
+                              () => const ChatScreen(),
+                              arguments: [data['p_seller'], data['vendor_id']]
+                            );
+                          })
                         ],
                       ).box.height(60).padding(const EdgeInsets.symmetric(horizontal: 16)).color(textfieldGrey).make(),
                       20.heightBox,
