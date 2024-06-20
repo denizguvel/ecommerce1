@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       color: lightGrey,
       width: context.screenWidth,
       height: context.screenHeight,
@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget{
               height: 60,
               color: lightGrey,
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   suffixIcon: Icon(Icons.search),
                   filled: true,
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget{
                   return  Image.asset(
                       slidersList[index],
                       fit: BoxFit.fitWidth,
-                  ).box.rounded.clip(Clip.antiAlias).margin(EdgeInsets.symmetric(horizontal:8)).make();
+                  ).box.rounded.clip(Clip.antiAlias).margin(const EdgeInsets.symmetric(horizontal:8)).make();
                 }),
 
                 10.heightBox,
@@ -79,7 +79,7 @@ class HomeScreen extends StatelessWidget{
                       return  Image.asset(
                           secondSlidersList[index],
                           fit: BoxFit.fitWidth,
-                      ).box.rounded.clip(Clip.antiAlias).margin(EdgeInsets.symmetric(horizontal:8)).make();
+                      ).box.rounded.clip(Clip.antiAlias).margin(const EdgeInsets.symmetric(horizontal:8)).make();
                   }),
 
                   //Category Buttons
@@ -158,7 +158,7 @@ class HomeScreen extends StatelessWidget{
                       return  Image.asset(
                           secondSlidersList[index],
                           fit: BoxFit.fitWidth,
-                      ).box.rounded.clip(Clip.antiAlias).margin(EdgeInsets.symmetric(horizontal:8)).make();
+                      ).box.rounded.clip(Clip.antiAlias).margin(const EdgeInsets.symmetric(horizontal:8)).make();
                   }),
 
                   //All Products Section

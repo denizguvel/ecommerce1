@@ -76,8 +76,21 @@ class CategoryDetails extends StatelessWidget{
                                   "${data[index]['p_price']}".numCurrency.text.color(redColor).fontFamily(bold).size(16).make(),
                                   10.heightBox
                                 ],
-                              ).box.white.margin(const EdgeInsets.symmetric(horizontal: 4)).roundedSM.outerShadowSm.padding(const EdgeInsets.all(12)).make().onTap(() {
-                                Get.to(() =>  ItemDetails(title: "${data[index]['p_name']}", data: data[index]));
+                              ).box
+                              .white
+                              .margin(const EdgeInsets.symmetric(horizontal: 4))
+                              .roundedSM
+                              .outerShadowSm
+                              .padding(const EdgeInsets.all(12))
+                              .make()
+                              .onTap(() {
+                                controller.checkIfFav(data[index]);
+                                Get.to(
+                                  () =>  ItemDetails(
+                                    title: "${data[index]['p_name']}", 
+                                    data: data[index]
+                                  )
+                                );
                               });
                       }),
                     )
