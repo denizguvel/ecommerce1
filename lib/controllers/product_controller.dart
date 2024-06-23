@@ -80,7 +80,7 @@ class ProductController extends GetxController {
   }
 
   checkIfFav(data) async {
-    if (data['p_wishlist'].constains(currentUser!.uid)) {
+    if (data['p_wishlist'].contains(currentUser!.uid)) {
       isFav(true);
     }else {
       isFav(false);
