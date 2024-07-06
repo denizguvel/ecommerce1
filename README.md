@@ -1,2 +1,2 @@
 # ecommerce1
-ecommerce app
+ecommerce flutter app
